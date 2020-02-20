@@ -16,13 +16,11 @@
 |       Teachers                  |           Students              |
 | --------------------------------| --------------------------------|
 |         Register                |             Register            |
-| --------------------------------| --------------------------------|
 |          Sign in                |              Sign in            |
-| --------------------------------| --------------------------------|
-|      Create groups              |                                 |
-|                                 |                                 |
-|                                 |                                 |
-|                                 |                                 |
+|      Create groups              |            Join a group         |
+|      Create subgroups           |            Study subgroupes     |
+|Create questions with answers    |              Do test            |
+|                  Sign out       |                  Sign out       |
 |                                 |                                 |
 
 ## Entities Model
