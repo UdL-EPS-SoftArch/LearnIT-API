@@ -4,22 +4,22 @@
 
 ## Vision
 
-**For** ... **who** ...
+**For** children or unexperienced people **who** want to learn the art of IT. The project  LEARNIT allows them to start from scratch without background to learn IT.
 
-**the project** LearnPhysics **is a** ...
+**the project** LEARNIT **is a** webapp created with Spring and Angular.
 
-**that** ... 
-
-**Unlike** ...
+**Unlike** existing tools it provides an easy way to learn IT by learning as you go and allowing you to redo questions, as well as learning from your mistakes.
 
 
 ## Features per Stakeholder
 
-|       StakeHolder1               |          Stakeholder2            |
+|       Teachers                  |           Students              |
 | --------------------------------| --------------------------------|
-|                                 |                                 |
-|                                 |                                 |
-|                                 |                                 |
+|         Register                |             Register            |
+| --------------------------------| --------------------------------|
+|          Sign in                |              Sign in            |
+| --------------------------------| --------------------------------|
+|      Create groups              |                                 |
 |                                 |                                 |
 |                                 |                                 |
 |                                 |                                 |
