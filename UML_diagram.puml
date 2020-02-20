@@ -24,17 +24,14 @@ class Student <<User>> extends User {
     Integer level, group
 }
 
-abstract class Test <<Test>> {
-    Integer nbOfQuestions
+class Test <<Test>> {
+    Integer nbOfQuestions, level
     Float mark
-}
-
-class EvaluationTest <<Test>> extends Test {
-}
-
-class GroupTest <<Test>> extends Test {
-    Integer level
     String subject
+}
+
+class Theory <<Group>> {
+    String text, url
 }
 
 class Group <<Group>> {
@@ -51,18 +48,19 @@ class Question <<Group>> {
     String question, answer, subject
 }
 
-EvaluationTest "1" -left- "*" Student: do <
-GroupTest "*" -- "1..*" Student: do <
-SubGroup "*" -- "*" Student: studies <
-Group "0..1" -- "*" Student: joins <
+Test "*" -left- "1..*" Student: do <
+SubGroup "*" -left- "*" Student: studies <
+Group "0..1" -left- "*" Student: joins <
 
-Group "*" -- "1" Teacher: creates <
-SubGroup "*" -- "1" Teacher: creates <
-Question "*" -- "1" Teacher: creates <
+Group "*" -left- "1" Teacher: creates <
+SubGroup "*" -left- "1" Teacher: creates <
+Question "*" -left- "1" Teacher: creates <
+Theory "*" -left- "1" Teacher: creates <
 
 Question "*" -up- "*" SubGroup: composes >
+Theory "*" -up- "*" SubGroup: composes >
 Group "1" -up- "*" SubGroup: composes <
 
 Question "*" -- "*" Test: composes >
-Group "*" -- "1" GroupTest: has >
+Group "*" -- "1" Test: has >
 @enduml
