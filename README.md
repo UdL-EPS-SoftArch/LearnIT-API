@@ -6,7 +6,7 @@
 
 **For** children or unexperienced people **who** want to learn the art of IT. The project  LEARNIT allows them to start from scratch without background to learn IT.
 
-**the project** LEARNIT **is a** webapp created with Spring and Angular.
+**The project** LEARNIT **is a** webapp created with Spring and Angular.
 
 **Unlike** existing tools it provides an easy way to learn IT by learning as you go and allowing you to redo questions, as well as learning from your mistakes.
 
@@ -26,5 +26,5 @@
 |                  Sign out       |                  Sign out       |
 
 ## Entities Model
-![alt text](http://www.plantuml.com/plantuml/png/ZP9VRzCm4C2VoQSuzH5bLODuO5DLZI5jGa82j26UdVZMU77iS3vJIiLtnsdTo3HHIv_gkvz_zyUvTIo8VQiproZJ2H8jo4x1cyKYYLHQEFUUcLJf6U-juKVr6-7T226oco5zVPeUCaKgDrQYmmwkqo09q_J1jukiLXB1CH9QtdPuAeLTzkfELCsQh3VoWzMMu7kj64VXvV897QzMy4cjQ_wYJ3E1V7D8H-HE-odBGpXqH-Q144ts9yj4wPX4nR6htWE3RfT1-3qoARC67s96j9X35yYD9Pa3jaBfNdEu_OIYgbC1_c8qCcft0nYKNgBXQJ2M_MWOr-6ayIVg7FfPkhIKOnXMy-yDKtv-_kf3HbdZyeDW3znhAnXQGKqwcFFb2rQSk6kqj8MuijCzSEWr1q_9t7ikvSS39BFxyZ_uimqUXpklo479LFCZtif16BT1obFnVf-prpEuqlZCLp0hvlDmYWzr0zB2CXjQJy6KSk6FGXVGo2tcys8QVR7Az60sDeORyKkwWOfGCBgq-6LqsCzbDBxrPV14whiuJ-mgeBRjh0liAfMU1-D0nLbkNFn0zaysPOj4SIHgqITlqKZVwhy0)
+![alt text](http://www.plantuml.com/plantuml/png/ZPDHRzCm482VyQyuzH5bKujuO5LLZI4w8I41wX3FRd9hl3fsiCyje-A_OnUdjPnqPK-pxxllpdVfhILko3MIsOrGBJUyWQeLy6OyJcvAoQrzJsJ4oX4kjAAb-8tmheSOetV7y4qUFaOcgLpf2YssS9DU6gusuVBjcDMYGh241ZKzjvXBOSzUtV5oipRQgUg3bjh0ZreGzgvdimUqD9_3Px6kwQjGcm7akqNJ8NVI3Ldk_Q7jc7k3gDWVnlZAak4bnQw21uwwFGF_joGZr1gSlrEymG9QJ-wqgGh0XWiPDF-o7v2NTIh0NuIgYjhz2LoIgr3HC1ZBVbA4Qt-Ik4LPG7XB6mozdiDue9jIbgnMNnw_EHyHMjbJ_OzRBXqFbqboqaOuHjD2QaxGQg7ebByGYil3G2_av-zWS78st6mO91EsRlM49INph56RPuYxonT2lbe1pYGBE70PdtMGBC6j_eT_gS5kj2yh2X1LglaPimhWokxG5AauMyreCe8hYOzq1QFNe-x3cKAbOSQoDMJi8J25cc_HizrhVMZOQFq_0gr78pU-lZvJ_4aB5K3MD_gC-2kOGccG4zgq-6NqEDBBQFmyBeEPDBuczkH1tRJQUdBULvv7uuF2Y5mxp9ql7lOrP8l4f2Dg7eAtg2hNoBy0)
 ...
