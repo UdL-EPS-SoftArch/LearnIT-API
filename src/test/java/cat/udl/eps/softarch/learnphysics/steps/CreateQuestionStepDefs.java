@@ -30,5 +30,10 @@ public class CreateQuestionStepDefs {
 
     @And("Level {string} doesn't exist and topic {string} exist")
     public void levelDoesnTExistAndTopicExist(String arg0, String arg1) {
+
+    }
+
+    @And("question with statement {string} doesn't exist")
+    public void questionWithStatementDoesnTExist(String arg0) {
     }
 }
