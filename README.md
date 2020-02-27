@@ -4,27 +4,27 @@
 
 ## Vision
 
-**For** ... **who** ...
+**For** children or unexperienced people **who** want to learn the art of IT. The project  LEARNIT allows them to start from scratch without background to learn IT.
 
-**the project** LearnPhysics **is a** ...
+**The project** LEARNIT **is a** webapp created with Spring and Angular.
 
-**that** ... 
-
-**Unlike** ...
+**Unlike** existing tools it provides an easy way to learn IT by learning as you go and allowing you to redo questions, as well as learning from your mistakes.
 
 
 ## Features per Stakeholder
 
-|       StakeHolder1               |          Stakeholder2            |
+|       Teachers                  |           Students              |
 | --------------------------------| --------------------------------|
-|                                 |                                 |
-|                                 |                                 |
-|                                 |                                 |
-|                                 |                                 |
-|                                 |                                 |
-|                                 |                                 |
-|                                 |                                 |
+|         Register                |             Register            |
+|          Sign in                |              Sign in            |
+|      Create the evaluation test |        Do the evaluation test   |
+|      Create level groups        |         Join the level group corresponding to their result of the evaluation test   |
+|      Create subjects in level groups           |            Study subjects    |
+|Create questions with answers    |                       |
+|Create theory related to a subject and a level   |                  |
+|Create final group test  |       Do final group test             |
+|                  Sign out       |                  Sign out       |
 
 ## Entities Model
-![alt text](http://www.plantuml.com/plantuml/png/bPBHRjCm58QloLCSzH9bLOEuO5DLZI4s8I41sX3NJdoMU77iO1-lGCMxOsznPYLH97hLdFFvyzy_lRJ43BbEPhOLgcU6TS1x0MzsksHIIMRjUo8ZIaTuhHNTYZy8xsQ8CVeuhi-dwt5Jf7AbELhiuJmT6gRQC7oxonh14IoXGKs_UvnAuPIzkc9LMnlj5F-WfJRmen64i_5-VuUM3WVuBEg6lWhLBY3VBPg8N4ctPBdn3traRWoYolvc6Iij6LRHa2fuODITCl2VMp92rU3yJB4ES-WzUTI6vu0T4p9eda_V8QkQL82_21KVjASHz4h7KT4oE5pxIH7M_adY8yeSwX1_8N4e1s97awEg_7B_pVcDqCe-RQwbPWGTC-rBc8-FJ3eMcCILP0gFQVYd8jVGUVoqH-lA1wneueFn1IsTJvfpvPp_l_jY8-kA70HFDJ-7KpamPOzeybGygN1JRE1CuZsTmURr9hxj2-0QzjbBVM5tvf5YkvrHu--CK4fO_qMWzTZ0xBRROeuzQA42bAMc42x-KI-WCiW8RNhXEZQMjuvDEDSFqOPBFAgxNblF7cAwOfsREP_9KEJSbgQBVNkiOO6uHCLT9_y1)
+![alt text](http://www.plantuml.com/plantuml/png/ZPDHRzCm482VyQyuzH5bKujuO5LLZI4w8I41wX3FRd9hl3fsiCyje-A_OnUdjPnqPK-pxxllpdVfhILko3MIsOrGBJUyWQeLy6OyJcvAoQrzJsJ4oX4kjAAb-8tmheSOetV7y4qUFaOcgLpf2YssS9DU6gusuVBjcDMYGh241ZKzjvXBOSzUtV5oipRQgUg3bjh0ZreGzgvdimUqD9_3Px6kwQjGcm7akqNJ8NVI3Ldk_Q7jc7k3gDWVnlZAak4bnQw21uwwFGF_joGZr1gSlrEymG9QJ-wqgGh0XWiPDF-o7v2NTIh0NuIgYjhz2LoIgr3HC1ZBVbA4Qt-Ik4LPG7XB6mozdiDue9jIbgnMNnw_EHyHMjbJ_OzRBXqFbqboqaOuHjD2QaxGQg7ebByGYil3G2_av-zWS78st6mO91EsRlM49INph56RPuYxonT2lbe1pYGBE70PdtMGBC6j_eT_gS5kj2yh2X1LglaPimhWokxG5AauMyreCe8hYOzq1QFNe-x3cKAbOSQoDMJi8J25cc_HizrhVMZOQFq_0gr78pU-lZvJ_4aB5K3MD_gC-2kOGccG4zgq-6NqEDBBQFmyBeEPDBuczkH1tRJQUdBULvv7uuF2Y5mxp9ql7lOrP8l4f2Dg7eAtg2hNoBy0)
 ...
