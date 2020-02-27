@@ -24,10 +24,20 @@ class Student <<User>> extends User {
     Integer level, group
 }
 
-class Test <<Test>> {
-    Integer nbOfQuestions, level
-    Float mark
-    String subject
+
+
+abstract class Test <<Test>> {
+    Integer nbOfQuestions
+}
+
+class EvaluationTest <<Test>> extends Test {
+    Float point
+}
+
+class FinalGroupTest <<Test>> extends Test {
+     Integer level
+     Float mark
+     String subject
 }
 
 class Theory <<Group>> {
@@ -48,7 +58,8 @@ class Question <<Group>> {
     String question, answer, subject
 }
 
-Test "*" -left- "1..*" Student: do <
+EvaluationTest "1" -left- "*" Student: do <
+FinalGroupTest "1" -left- "*" Group: have <
 SubGroup "*" -left- "*" Student: studies <
 Group "0..1" -left- "*" Student: joins <
 
