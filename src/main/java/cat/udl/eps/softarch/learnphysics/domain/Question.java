@@ -17,12 +17,11 @@ import java.util.Collection;
 
 public class Question {
 
-    @NotBlank
-    @Column(unique = true)
     @Id
     private Integer id;
 
     @NotBlank
+    @Column(unique = true)
     private String statement;
 
     @NotBlank
