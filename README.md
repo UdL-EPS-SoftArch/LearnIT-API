@@ -1,6 +1,6 @@
-# LearnPhysics-API
+# LearnIT-API
 
-[![Build Status](https://travis-ci.org/UdL-EPS-SoftArch/LearnPhysics-API.svg?branch=master)](https://travis-ci.org/UdL-EPS-SoftArch/LearnPhysics-API/branches) 
+[![Build Status](https://travis-ci.org/UdL-EPS-SoftArch/LearnIT-API.svg?branch=master)](https://travis-ci.org/UdL-EPS-SoftArch/LearnIT-API/branches) 
 
 ## Vision
 

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cat.udl.eps.softarch</groupId>
-	<artifactId>LearnPhysics-API</artifactId>
+	<artifactId>LearnIT-API</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>LearnPhysics-API</name>
-	<description>LearnPhysics API</description>
+	<name>LearnIT-API</name>
+	<description>LearnIT API</description>
 
 	<properties>
 		<java.version>11</java.version>
