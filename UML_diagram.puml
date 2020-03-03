@@ -8,61 +8,69 @@ skinparam ranksep 40
 hide stereotype
 skinparam class {
 	BackgroundColor White
-	BackgroundColor<<Test>> LightPink
+	BackgroundColor<<Exam>> LightPink
 	BackgroundColor<<User>> LightBlue
-	BackgroundColor<<Group>> LightGreen
+	BackgroundColor<<Level>> LightGreen
 }
 
 abstract class User <<User>> {
-    String username, password, email
+    String username, password, email, role
 }
 
 class Teacher <<User>> extends User {
 }
 
 class Student <<User>> extends User {
-    Integer level, group
+    Integer level
 }
 
-abstract class Test <<Test>> {
+
+
+abstract class Exam <<Exam>> {
     Integer nbOfQuestions
-    Float mark
 }
 
-class EvaluationTest <<Test>> extends Test {
+class EvaluationExam <<Exam>> extends Exam {
+    Float point
 }
 
-class GroupTest <<Test>> extends Test {
+class FinalLevelExam <<Exam>> extends Exam {
+     Integer level
+     Float mark
+     String subject
+}
+
+class Theory <<Level>> {
+    String text, url
+}
+
+class Level <<Level>> {
+    Integer level
+}
+
+class Topic <<Level>> {
     Integer level
     String subject
 }
 
-class Group <<Group>> {
-    Integer level
-}
-
-class SubGroup <<Group>> {
-    Integer level
-    String subject
-}
-
-class Question <<Group>> {
+class Question <<Level>> {
     Integer level, id
     String question, answer, subject
 }
 
-EvaluationTest "1" -left- "*" Student: do <
-GroupTest "*" -- "1..*" Student: do <
-SubGroup "*" -- "*" Student: studies <
-Group "0..1" -- "*" Student: joins <
+EvaluationExam "1" -left- "*" Student: do <
+FinalLevelExam "1" -left- "*" Level: has <
+Topic "*" -left- "*" Student: studies <
+Level "0..1" -left- "*" Student: joins <
 
-Group "*" -- "1" Teacher: creates <
-SubGroup "*" -- "1" Teacher: creates <
-Question "*" -- "1" Teacher: creates <
+Level "*" -left- "1" Teacher: creates <
+Topic "*" -left- "1" Teacher: creates <
+Question "*" -left- "1" Teacher: creates <
+Theory "*" -left- "1" Teacher: creates <
 
-Question "*" -up- "*" SubGroup: composes >
-Group "1" -up- "*" SubGroup: composes <
+Question "*" -up- "*" Topic: composes >
+Theory "*" -up- "*" Topic: composes >
+Level "1" -up- "*" Topic: composes <
 
-Question "*" -- "*" Test: composes >
-Group "*" -- "1" GroupTest: has >
+Question "*" -- "*" Exam: composes >
 @enduml
