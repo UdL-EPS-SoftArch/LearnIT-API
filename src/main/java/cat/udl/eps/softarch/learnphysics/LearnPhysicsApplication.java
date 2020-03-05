@@ -9,5 +9,4 @@ public class LearnPhysicsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LearnPhysicsApplication.class, args);
 	}
-
 }
