@@ -10,5 +10,7 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface QuestionRepository extends PagingAndSortingRepository<Question, Integer> {
+
     Boolean existsQuestionByStatement(@Param("statement") String statement);
+    Question findQuestionByStatement(@Param("statement") String statement);
 }

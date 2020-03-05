@@ -8,16 +8,19 @@ import cat.udl.eps.softarch.learnphysics.repository.LevelRepository;
 import cat.udl.eps.softarch.learnphysics.repository.QuestionRepository;
 import cat.udl.eps.softarch.learnphysics.repository.TopicRepository;
 import cat.udl.eps.softarch.learnphysics.repository.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -61,10 +64,10 @@ public class CreateQuestionStepDefs {
         questionRepository.save(question);
     }
 
-    @And("It has been created a question with statement {string} and answer {answer}")
-    public void itHasBeenCreatedAQuestionWithStatement(String statement, String answer) {
+    @And("It has been created a question with statement {string} and answer {string}")
+    public void itHasBeenCreatedAQuestionWithStatement(String statement, String answer) throws Exception {
         stepDefs.result = stepDefs.mockMvc.perform(
-                get("/questions/{statement}", statement)
+                get("/questions/{statement id}", questionRepository.findQuestionByStatement(statement).getId())
                         .accept(MediaType.APPLICATION_JSON)
                         .with(AuthenticationStepDefs.authenticate()))
                 .andDo(print())
@@ -89,12 +92,33 @@ public class CreateQuestionStepDefs {
     }
 
     @When("I write a new question with statement {string}, answer {string}")
-    public void iWriteANewQuestionWithStatementAnswer(String statement, String answer) {
+    public void iWriteANewQuestionWithStatementAnswer(String statement, String answer) throws Throwable {
         Question question = new Question();
         question.setStatement(statement);
         question.setAnswer(answer);
-        question.setTopicId(0);
-        question.setLevelId(0);
-        questionRepository.save(question);
+
+        stepDefs.result = stepDefs.mockMvc.perform(
+                post("/questions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(
+                                stepDefs.mapper.writeValueAsString(question)
+                        )
+                        .accept(MediaType.APPLICATION_JSON)
+                        .with(AuthenticationStepDefs.authenticate()))
+                .andDo(print());
+    }
+
+
+
+
+
+
+
+
+
+
+
+    @And("question with statement {string} exists")
+    public void questionWithStatementExists(String statement) {
     }
 }
