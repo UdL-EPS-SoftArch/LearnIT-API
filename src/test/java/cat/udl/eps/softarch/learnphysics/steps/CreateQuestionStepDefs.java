@@ -110,14 +110,6 @@ public class CreateQuestionStepDefs {
 
 
 
-
-
-
-
-
-
-
-
     @And("question with statement {string} exists")
     public void questionWithStatementExists(String statement) {
     }

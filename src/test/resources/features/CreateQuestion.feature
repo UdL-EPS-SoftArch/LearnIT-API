@@ -4,14 +4,14 @@ Feature: Create a question
   I want to add a new question
 
   Scenario: Add a new question as teacher
-    Given I login as "teacher" with password "password" and role "teacher"
+    Given I login as "teacher" with password "teacherpassword"
     And question with statement "statement test" doesn't exist
     When I write a new question with statement "statement test", answer "answer test"
     Then The response code is 201
     And It has been created a question with statement "statement test" and answer "answer test"
 
   Scenario: Add a new question as student
-    Given I login as "student" with password "password" and role "student"
+    Given I login as "student" with password "studentpassword"
     And question with statement "statement test" doesn't exist
     When I write a new question with statement "statement test", answer "answer test"
     Then The response code is 401

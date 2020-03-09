@@ -11,14 +11,12 @@ public class AuthenticationStepDefs {
 
     public static String currentUsername;
     public static String currentPassword;
-    public static String currentRole;
 
     @Before
     public void setup() {
         // Clear authentication credentials at the start of every test.
         AuthenticationStepDefs.currentPassword = "";
         AuthenticationStepDefs.currentUsername = "";
-        AuthenticationStepDefs.currentRole = "";
     }
 
     static RequestPostProcessor authenticate() {
@@ -33,13 +31,7 @@ public class AuthenticationStepDefs {
 
     @Given("^I'm not logged in$")
     public void iMNotLoggedIn() {
-        currentUsername = currentPassword = currentRole = null;
+        currentUsername = currentPassword = null;
     }
 
-    @Given("I login as {string} with password {string} and role {string}")
-    public void iLoginAsWithPasswordAndRole(String username, String password, String role) {
-        AuthenticationStepDefs.currentUsername = username;
-        AuthenticationStepDefs.currentPassword = password;
-        AuthenticationStepDefs.currentRole = role;
-    }
 }

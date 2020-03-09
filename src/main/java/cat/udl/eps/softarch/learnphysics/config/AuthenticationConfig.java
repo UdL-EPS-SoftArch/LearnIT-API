@@ -1,5 +1,7 @@
 package cat.udl.eps.softarch.learnphysics.config;
 
+import cat.udl.eps.softarch.learnphysics.domain.Student;
+import cat.udl.eps.softarch.learnphysics.domain.Teacher;
 import cat.udl.eps.softarch.learnphysics.domain.User;
 import cat.udl.eps.softarch.learnphysics.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +37,25 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
       player.setPassword(defaultPassword);
       player.encodePassword();
       userRepository.save(player);
+    }
+
+      // Sample user
+      if (!userRepository.existsById("teacher")) {
+        User teacher = new Teacher();
+        teacher.setEmail("teacher@sample.app");
+        teacher.setUsername("teacher");
+        teacher.setPassword("teacherpassword");
+        teacher.encodePassword();
+        userRepository.save(teacher);
+    }
+
+      if (!userRepository.existsById("student")) {
+      User student = new Student();
+      student.setEmail("student@sample.app");
+      student.setUsername("student");
+      student.setPassword("studentpassword");
+      student.encodePassword();
+      userRepository.save(student);
     }
   }
 }
