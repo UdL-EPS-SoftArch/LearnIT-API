@@ -29,16 +29,6 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
         .userDetailsService(basicUserDetailsService)
         .passwordEncoder(User.passwordEncoder);
 
-    // Sample user
-    if (!userRepository.existsById("demo")) {
-      User player = new User();
-      player.setEmail("demo@sample.app");
-      player.setUsername("demo");
-      player.setPassword(defaultPassword);
-      player.encodePassword();
-      userRepository.save(player);
-    }
-
       // Sample user
       if (!userRepository.existsById("teacher")) {
         User teacher = new Teacher();

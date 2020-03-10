@@ -14,7 +14,7 @@ Feature: Create a question
     Given I login as "student" with password "studentpassword"
     And question with statement "statement test" doesn't exist
     When I write a new question with statement "statement test", answer "answer test"
-    Then The response code is 401
+    Then The response code is 403
     And It has not been created a question with statement "statement test"
 
   Scenario: Add a new question without login
@@ -25,22 +25,22 @@ Feature: Create a question
     And It has not been created a question with statement "statement test"
 
   Scenario: Add a new question as teacher with an existing statement
-    Given I login as "teacher" with password "password" and role "teacher"
+    Given I login as "teacher" with password "teacherpassword"
     And question with statement "statement test" exists
-    When I write a new question with statement "statement test", answer "answer test" and level "level test" and topic "topic test"
-    Then The response code is 403
+    When I write a new question with statement "statement test", answer "answer test"
+    Then The response code is 409
     And It has not been created a question with statement "statement test"
 
   Scenario: Add a question as teacher with empty statement
-    Given I login as "teacher" with password "password" and role "teacher"
+    Given I login as "teacher" with password "teacherpassword"
     And question with statement "statement test" doesn't exist
-    When I write a new question with statement "", answer "answer test" and level "level test" and topic "topic test"
+    When I write a new question with statement "", answer "answer test"
     Then The response code is 400
     And It has not been created a question with statement ""
 
   Scenario: Add a question as teacher with empty answer
-    Given I login as "teacher" with password "password" and role "teacher"
+    Given I login as "teacher" with password "teacherpassword"
     And question with statement "statement test" doesn't exist
-    When I write a new question with statement "statement test", answer "" and level "level test" and topic "topic test"
+    When I write a new question with statement "statement test", answer ""
     Then The response code is 400
     And It has not been created a question with statement "statement test"

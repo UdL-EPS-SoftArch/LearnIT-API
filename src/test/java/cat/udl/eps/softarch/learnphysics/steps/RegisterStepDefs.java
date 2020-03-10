@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import cat.udl.eps.softarch.learnphysics.domain.Student;
 import cat.udl.eps.softarch.learnphysics.domain.User;
 import cat.udl.eps.softarch.learnphysics.repository.UserRepository;
 import io.cucumber.java.en.And;
@@ -35,12 +36,12 @@ public class RegisterStepDefs {
   @Given("^There is a registered user with username \"([^\"]*)\" and password \"([^\"]*)\" and email \"([^\"]*)\"$")
   public void thereIsARegisteredUserWithUsernameAndPasswordAndEmail(String username, String password, String email) {
     if (!userRepository.existsById(username)) {
-      User user = new User();
-      user.setEmail(email);
-      user.setUsername(username);
-      user.setPassword(password);
-      user.encodePassword();
-      userRepository.save(user);
+      User student = new Student();
+      student.setEmail(email);
+      student.setUsername(username);
+      student.setPassword(password);
+      student.encodePassword();
+      userRepository.save(student);
     }
   }
 
@@ -72,15 +73,15 @@ public class RegisterStepDefs {
 
   @When("^I register a new user with username \"([^\"]*)\", email \"([^\"]*)\" and password \"([^\"]*)\"$")
   public void iRegisterANewUserWithUsernameEmailAndPassword(String username, String email, String password) throws Throwable {
-    User user = new User();
-    user.setUsername(username);
-    user.setEmail(email);
+    User student = new Student();
+    student.setUsername(username);
+    student.setEmail(email);
 
     stepDefs.result = stepDefs.mockMvc.perform(
             post("/users")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(new JSONObject(
-                            stepDefs.mapper.writeValueAsString(user)
+                            stepDefs.mapper.writeValueAsString(student)
                     ).put("password", password).toString())
                     .accept(MediaType.APPLICATION_JSON)
                     .with(AuthenticationStepDefs.authenticate()))

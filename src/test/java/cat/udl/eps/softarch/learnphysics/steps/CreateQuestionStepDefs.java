@@ -112,5 +112,14 @@ public class CreateQuestionStepDefs {
 
     @And("question with statement {string} exists")
     public void questionWithStatementExists(String statement) {
+        if (!questionRepository.existsQuestionByStatement(statement))
+        {
+            Question question = new Question();
+            question.setStatement(statement);
+            question.setAnswer("answer");
+            question.setLevelId(0);
+            question.setTopicId(0);
+            questionRepository.save(question);
+        }
     }
 }
