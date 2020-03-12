@@ -14,6 +14,7 @@ import java.util.List;
 public class Level extends UriEntity<Integer> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer levelId;
 
     @NotBlank
@@ -22,10 +23,6 @@ public class Level extends UriEntity<Integer> {
 
     @Length(min = 1, max = 256)
     private String description;
-
-    @NotBlank
-    @OneToMany
-    private List<Topic> topics;
 
     @Override
     public Integer getId() {

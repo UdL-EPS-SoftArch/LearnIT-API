@@ -54,13 +54,11 @@ public class CreateQuestionStepDefs {
 
     }
 
-    @When("I write a new question with statement {string}, answer {string} and level {string} and topic {string}")
+    @When("I write a new question with statement {string}, answer {string}, level {string} and topic {string}")
     public void iWriteANewQuestionWithStatementAnswerAndLevelAndTopic(String statement, String answer, Integer levelId, Integer topicId) {
         Question question = new Question();
         question.setStatement(statement);
         question.setAnswer(answer);
-        question.setLevelId(levelId);
-        question.setTopicId(topicId);
         questionRepository.save(question);
     }
 

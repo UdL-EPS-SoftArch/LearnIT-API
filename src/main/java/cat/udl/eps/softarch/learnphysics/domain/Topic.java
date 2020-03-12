@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 public class Topic extends UriEntity<Integer>{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer topicId;
 
     @NotBlank
@@ -21,14 +24,6 @@ public class Topic extends UriEntity<Integer>{
 
     @Length(min = 1, max = 256)
     private String description;
-
-    @NotBlank
-    //@OneToMany
-    private String questions;
-
-    @NotBlank
-    //@OneToMany
-    private String theory;
 
     @Override
     public Integer getId() {

@@ -78,7 +78,7 @@ public class RegisterStepDefs {
     student.setEmail(email);
 
     stepDefs.result = stepDefs.mockMvc.perform(
-            post("/users")
+            post("/students")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(new JSONObject(
                             stepDefs.mapper.writeValueAsString(student)
@@ -91,7 +91,7 @@ public class RegisterStepDefs {
   @And("^It has been created a user with username \"([^\"]*)\" and email \"([^\"]*)\", the password is not returned$")
   public void itHasBeenCreatedAUserWithUsername(String username, String email) throws Throwable {
     stepDefs.result = stepDefs.mockMvc.perform(
-            get("/users/{username}", username)
+            get("/students/{username}", username)
                     .accept(MediaType.APPLICATION_JSON)
                     .with(AuthenticationStepDefs.authenticate()))
             .andDo(print())
@@ -102,7 +102,7 @@ public class RegisterStepDefs {
   @And("^It has not been created a user with username \"([^\"]*)\"$")
   public void itHasNotBeenCreatedAUserWithUsername(String username) throws Throwable {
     stepDefs.result = stepDefs.mockMvc.perform(
-            get("/users/{username}", username)
+            get("/students/{username}", username)
                     .accept(MediaType.APPLICATION_JSON)
                     .with(AuthenticationStepDefs.authenticate()))
             .andExpect(status().isNotFound());
