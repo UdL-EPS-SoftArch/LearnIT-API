@@ -6,7 +6,9 @@ Feature: Create a question
   Scenario: Add a new question as teacher
     Given I login as "teacher" with password "teacherpassword"
     And question with statement "statement test" doesn't exist
-    When I write a new question with statement "statement test", answer "answer test"
+    And level "levelname" and topic "topicname" exist
+    And topic "topicname" is in level "levelname"
+    When I write a new question with statement "statement test", answer "answer test", level "levelname" and topic "topicname"
     Then The response code is 201
     And It has been created a question with statement "statement test" and answer "answer test"
 

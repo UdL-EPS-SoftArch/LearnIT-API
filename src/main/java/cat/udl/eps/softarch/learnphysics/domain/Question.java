@@ -28,8 +28,11 @@ public class Question {
 
     @NotBlank
     private String answer;
+    @NotBlank
+    @ManyToOne
+    private Topic topicId;
+    @NotBlank
+    @ManyToOne
+    private Level levelId;
 
-    private Integer topicId;
-
-    private Integer levelId;
 }

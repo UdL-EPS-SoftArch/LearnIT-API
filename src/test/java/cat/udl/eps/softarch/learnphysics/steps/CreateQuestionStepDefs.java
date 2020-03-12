@@ -37,29 +37,32 @@ public class CreateQuestionStepDefs {
     private StepDefs stepDefs;
 
 
-    @And("level id {int} and topic id {int} exist")
-    public void levelAndTopicExist(Integer levelId, Integer topicId) {
-        if (!levelRepository.existsById(levelId) & !topicRepository.existsById(topicId)) {
-            Level level = new Level();
-            level.setLevelId(levelId);
-            levelRepository.save(level);
-            Topic topic = new Topic();
-            topic.setTopicId(topicId);
-            topicRepository.save(topic);
-        }
-    }
 
     @And("topic {string} is in level {string}")
-    public void topicIsInLevel(String arg0, String arg1) {
-
+    public void topicIsInLevel(String topicName, String levelName) {
+        Topic topic = topicRepository.findTopicByName(topicName);
+        topic.setLevel(levelRepository.findLevelByName(levelName));
+        topicRepository.save(topic);
     }
 
     @When("I write a new question with statement {string}, answer {string}, level {string} and topic {string}")
-    public void iWriteANewQuestionWithStatementAnswerAndLevelAndTopic(String statement, String answer, Integer levelId, Integer topicId) {
+    public void iWriteANewQuestionWithStatementAnswerAndLevelAndTopic(String statement, String answer, String levelName, String topicName) throws Exception {
+
         Question question = new Question();
         question.setStatement(statement);
         question.setAnswer(answer);
-        questionRepository.save(question);
+        question.setLevelId(levelRepository.findLevelByName(levelName));
+        question.setTopicId(topicRepository.findTopicByName(topicName));
+
+        stepDefs.result = stepDefs.mockMvc.perform(
+                post("/questions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(
+                                stepDefs.mapper.writeValueAsString(question)
+                        )
+                        .accept(MediaType.APPLICATION_JSON)
+                        .with(AuthenticationStepDefs.authenticate()))
+                .andDo(print());
     }
 
     @And("It has been created a question with statement {string} and answer {string}")
@@ -110,14 +113,26 @@ public class CreateQuestionStepDefs {
 
     @And("question with statement {string} exists")
     public void questionWithStatementExists(String statement) {
-        if (!questionRepository.existsQuestionByStatement(statement))
+       /* if (!questionRepository.existsQuestionByStatement(statement))
         {
             Question question = new Question();
             question.setStatement(statement);
             question.setAnswer("answer");
-            question.setLevelId(0);
-            question.setTopicId(0);
+            question.setLevelId();
+            question.setTopicId();
             questionRepository.save(question);
+        }*/
+    }
+
+    @And("level {string} and topic {string} exist")
+    public void levelAndTopicExist(String levelName, String topicName) {
+        if (!levelRepository.existsLevelsByName(levelName) & !topicRepository.existsTopicByName(topicName)) {
+            Level level = new Level();
+            level.setName(levelName);
+            levelRepository.save(level);
+            Topic topic = new Topic();
+            topic.setName(topicName);
+            topicRepository.save(topic);
         }
     }
 }

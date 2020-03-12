@@ -1,8 +1,8 @@
 package cat.udl.eps.softarch.learnphysics.config;
 
-import cat.udl.eps.softarch.learnphysics.domain.Student;
-import cat.udl.eps.softarch.learnphysics.domain.Teacher;
-import cat.udl.eps.softarch.learnphysics.domain.User;
+import cat.udl.eps.softarch.learnphysics.domain.*;
+import cat.udl.eps.softarch.learnphysics.repository.LevelRepository;
+import cat.udl.eps.softarch.learnphysics.repository.TopicRepository;
 import cat.udl.eps.softarch.learnphysics.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -17,10 +17,15 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
 
   final BasicUserDetailsService basicUserDetailsService;
   final UserRepository userRepository;
+  final LevelRepository levelRepository;
+  final TopicRepository topicRepository;
 
-  public AuthenticationConfig(BasicUserDetailsService basicUserDetailsService, UserRepository userRepository) {
+
+  public AuthenticationConfig(BasicUserDetailsService basicUserDetailsService, UserRepository userRepository, LevelRepository levelRepository,TopicRepository topicRepository) {
     this.basicUserDetailsService = basicUserDetailsService;
     this.userRepository = userRepository;
+    this.levelRepository=levelRepository;
+    this.topicRepository=topicRepository;
   }
 
   @Override
@@ -30,6 +35,8 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
         .passwordEncoder(User.passwordEncoder);
 
       // Sample user
+    Level level = null;
+
       if (!userRepository.existsById("teacher")) {
         User teacher = new Teacher();
         teacher.setEmail("teacher@sample.app");
@@ -47,5 +54,20 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
       student.encodePassword();
       userRepository.save(student);
     }
+
+    if (!levelRepository.existsLevelsByName("levelname")) {
+      level = new Level();
+      level.setName("levelname");
+      level.setDescription("bla bla bla");
+      levelRepository.save(level);
+    }
+    if (!topicRepository.existsTopicByName("topicname")) {
+      Topic topic = new Topic();
+      topic.setName("topicname");
+      topic.setDescription("bla bla bla");
+      topic.setLevel(level);
+      topicRepository.save(topic);
+    }
+
   }
 }
