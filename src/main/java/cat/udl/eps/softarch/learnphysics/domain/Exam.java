@@ -5,8 +5,8 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
-import org.hibernate.mapping.List;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -14,11 +14,17 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Exam extends UriEntity<Integer> {
+
     @Id
+    @Column(name="Exam_Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer examId;
 
     @NotBlank
     private Integer nbOfQuestions;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "exam")
+    private List<Question> questions;
 
     @Override
     public Integer getId() {
