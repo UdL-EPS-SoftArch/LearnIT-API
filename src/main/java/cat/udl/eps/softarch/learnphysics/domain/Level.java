@@ -27,6 +27,10 @@ public class Level extends UriEntity<Integer> {
     @OneToMany
     private List<Topic> topics;
 
+    public Level(int levelId, String name, String description, List<Topic> topics) {
+        super();
+    }
+
     @Override
     public Integer getId() {
         return levelId;

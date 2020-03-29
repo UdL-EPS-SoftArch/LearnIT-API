@@ -12,4 +12,6 @@ public interface LevelRepository extends PagingAndSortingRepository<Level, Integ
     Level findByName(@Param("name") String name);
     Level findByDescription(@Param("description") String description);
     Level findByTopic(@Param("topics") Topic topic);
+
+    <Level> Level  findAllById(@Param("listOfLevelsId") String id);
 }
