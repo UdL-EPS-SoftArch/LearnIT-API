@@ -7,18 +7,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-import org.hibernate.validator.constraints.Length;
-
 @Entity
-@Table(name = "FinalLevelExam")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class FinalLevelExam extends Exam{
-
-    @Id
-    @Column(name="FinalLevelExam_Id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer FinalLevelExamId;
+public class FinalLevelExam extends Exam {
 
     @NotBlank
     private Float Mark;
@@ -26,12 +18,6 @@ public class FinalLevelExam extends Exam{
     @NotBlank
     private String subject;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "FinalLevelExam")
+    @OneToMany
     private List<Level> level;
-
-    @Override
-    public Integer getId() {
-        return FinalLevelExamId;
-    }
-
 }

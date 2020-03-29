@@ -10,26 +10,19 @@ import java.util.List;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-@Table(name = "Exam")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Exam extends UriEntity<Integer> {
 
     @Id
-    @Column(name="Exam_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer examId;
+    private Integer id;
 
     @NotBlank
     private Integer nbOfQuestions;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "exam")
+    @OneToMany
     private List<Question> questions;
-
-    @Override
-    public Integer getId() {
-        return examId;
-    }
 
     //@NotBlank
     //@OneToMany
