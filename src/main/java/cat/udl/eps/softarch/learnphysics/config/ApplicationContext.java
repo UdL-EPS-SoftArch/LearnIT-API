@@ -59,9 +59,9 @@ public class ApplicationContext implements InitializingBean {
                 "Adept", "Advanced Adept","Expert", "Master", "Legendary");
         List<Topic> topics = makeTopics(lvlNum, difficulties);
         Level level = new Level(lvlNum, difficulties.get(lvlNum-1),
-                "This level is of difficulty " + difficulties.get(lvlNum-1) + " and has topics: " + topics.get(0).getDescription() + ", " +
-                        topics.get(1).getDescription() + ", " + topics.get(2).getDescription() + ", "
-                                + topics.get(3).getDescription() +", and "+ topics.get(4).getDescription(), topics);
+                "This level is of difficulty " + difficulties.get(lvlNum-1) + " and has topics: " + topics.get(0).getName() + ", " +
+                        topics.get(1).getName() + ", " + topics.get(2).getName() + ", "
+                                + topics.get(3).getName() +", and "+ topics.get(4).getName(), topics);
         levelRepository.save(level);
         levels.add(level);
     }

@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 
-@RepositoryRestResource(collectionResourceRel = "levels", path = "levels")
+@RepositoryRestResource
 public interface LevelRepository extends PagingAndSortingRepository<Level, Integer> {
     Optional<Level> findById(@Param("levelId") Integer id);
     //Level findByName(@Param("name") String name);

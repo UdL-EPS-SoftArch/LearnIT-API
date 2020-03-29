@@ -31,8 +31,7 @@ public class LevelExistsStepDefs {
     public void iRetrieveTheListOfLevels() throws Exception {
         stepDefs.result = stepDefs.mockMvc.perform(
                 get("/levels")
-                    .accept(MediaType.APPLICATION_JSON)
-                    .with(AuthenticationStepDefs.authenticate()))
+                    .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }
 
@@ -50,8 +49,7 @@ public class LevelExistsStepDefs {
     public void iTryToAccessLevel(int lvlName) throws Exception {
         stepDefs.result = stepDefs.mockMvc.perform(
                 get("/levels/{lvlName}", lvlName)
-                    .accept(MediaType.APPLICATION_JSON)
-                    .with(AuthenticationStepDefs.authenticate()))
+                    .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());
     }
 }

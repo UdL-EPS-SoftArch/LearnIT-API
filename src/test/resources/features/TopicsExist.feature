@@ -4,7 +4,3 @@ Feature: Checking Topics existence
     Given The application has been started
     When I retrieve the list of topics for level 1
     Then The level has 5 topics
-
-  Scenario: Level contains topic Topic
-    Given There is level 1
-    Then It contains topic with name "IT"

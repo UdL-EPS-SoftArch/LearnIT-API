@@ -15,7 +15,6 @@ import java.util.List;
 public class Level extends UriEntity<Integer> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer levelId;
 
@@ -27,9 +26,11 @@ public class Level extends UriEntity<Integer> {
     @Length(min = 1, max = 256)
     private String description;
 
-    @NotBlank
     @OneToMany
     private List<Topic> topics;
+
+    public Level() {
+    }
 
     public Level(int levelId, String name, String description, List<Topic> topics) {
         this.levelId = levelId;

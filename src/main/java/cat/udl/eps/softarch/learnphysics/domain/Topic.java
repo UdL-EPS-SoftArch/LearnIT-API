@@ -25,13 +25,14 @@ public class Topic extends UriEntity<Integer>{
     @Length(min = 1, max = 256)
     private String description;
 
-    @NotBlank
     @OneToMany
     private List<Question> questions;
 
-    @NotBlank
     @OneToMany
     private List<Theory> theory;
+
+    public Topic() {
+    }
 
     public Topic(int topicId, String name, String description, List<Question> questions, List<Theory> theory) {
         this.topicId = topicId;

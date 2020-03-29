@@ -21,9 +21,8 @@ public class TopicsExistStepDef {
     @When("I retrieve the list of topics for level {int}")
     public void iRetrieveTheListOfTopicsForLevel(int numLevel) throws Exception {
         stepDefs.result = stepDefs.mockMvc.perform(
-                get("levels/{numlevel}/topics", numLevel)
-                .accept(MediaType.APPLICATION_JSON)
-                .with(AuthenticationStepDefs.authenticate()))
+                get("/levels/{numlevel}/topics", numLevel)
+                .accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print());
     }
 

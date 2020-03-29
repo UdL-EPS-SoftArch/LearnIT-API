@@ -7,6 +7,6 @@ Feature: Checking level existence
 
 
   Scenario: Level 3 has been created at the start of the application
-    Given There is a level with name 3
+    Given The application has been started
     When I try to access level 3
     Then The response code is 200
