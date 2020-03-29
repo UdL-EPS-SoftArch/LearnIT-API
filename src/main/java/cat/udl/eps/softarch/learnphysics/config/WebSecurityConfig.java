@@ -28,12 +28,20 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
                     .authorizeRequests()
                     .antMatchers(HttpMethod.GET, "/identity").authenticated()
                     .antMatchers(HttpMethod.POST, "/students").anonymous()
-                    .antMatchers(HttpMethod.POST, "/students/*").denyAll()
-                    //.antMatchers(HttpMethod.POST, "/**/*").authenticated()
+                    .antMatchers(HttpMethod.POST, " *").denyAll()
+
+                    .antMatchers(HttpMethod.POST, "/questions").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.DELETE, "/questions/*").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.PATCH, "/questions/*").hasRole("TEACHER")
+
+                    .antMatchers(HttpMethod.POST, "/theories").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.DELETE, "/theories/*").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.PATCH, "/theories/*").hasRole("TEACHER")
+
+                    .antMatchers(HttpMethod.POST, "/**/*").authenticated()
                     .antMatchers(HttpMethod.PUT, "/**/*").authenticated()
                     .antMatchers(HttpMethod.PATCH, "/**/*").authenticated()
                     .antMatchers(HttpMethod.DELETE, "/**/*").authenticated()
-                    .antMatchers(HttpMethod.POST, "/questions").hasRole("TEACHER")
 
                     .anyRequest().permitAll()
                     .and()

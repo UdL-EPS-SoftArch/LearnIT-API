@@ -25,8 +25,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 public class CreateQuestionStepDefs {
 
+    private   Level level;
+    private   Topic topic;
     @Autowired
     private LevelRepository levelRepository;
     @Autowired
@@ -37,23 +40,42 @@ public class CreateQuestionStepDefs {
     private StepDefs stepDefs;
 
 
+    @Given("There is a level")
+    public void thereIsALevel() {
+            level = new Level();
+            level.setName("level");
+            level.setDescription("bla bla bla");
+            levelRepository.save(level);
+
+
+        }
+    @And("There is a topic")
+    public void thereIsATopic() {
+            topic = new Topic();
+            topic.setName("topic");
+            topic.setDescription("bla bla bla");
+            topic.setLevel(level);
+            topicRepository.save(topic);
+    }
+
+
 
     @And("topic {string} is in level {string}")
     public void topicIsInLevel(String topicName, String levelName) {
-        Topic topic = topicRepository.findTopicByName(topicName);
-        topic.setLevel(levelRepository.findLevelByName(levelName));
-        topicRepository.save(topic);
+        if(topic.getLevel()!=levelRepository.findLevelByName(levelName)) {
+            topic = topicRepository.findTopicByName(topicName);
+            topic.setLevel(levelRepository.findLevelByName(levelName));
+            topicRepository.save(topic);
+        }
     }
 
-    @When("I write a new question with statement {string}, answer {string}, level {string} and topic {string}")
-    public void iWriteANewQuestionWithStatementAnswerAndLevelAndTopic(String statement, String answer, String levelName, String topicName) throws Exception {
-
+    @When("I write a new question with statement {string} and answer {string}")
+    public void iWriteANewQuestionWithStatementAnswerAndLevelAndTopic(String statement, String answer) throws Exception {
         Question question = new Question();
         question.setStatement(statement);
         question.setAnswer(answer);
-        question.setLevelId(levelRepository.findLevelByName(levelName));
-        question.setTopicId(topicRepository.findTopicByName(topicName));
-
+        question.setLevelId(level);
+        question.setTopicId(topic);
         stepDefs.result = stepDefs.mockMvc.perform(
                 post("/questions")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -68,22 +90,26 @@ public class CreateQuestionStepDefs {
     @And("It has been created a question with statement {string} and answer {string}")
     public void itHasBeenCreatedAQuestionWithStatement(String statement, String answer) throws Exception {
         stepDefs.result = stepDefs.mockMvc.perform(
-                get("/questions/{statement id}", questionRepository.findQuestionByStatement(statement).getId())
+                get("/questions/{id}", questionRepository.findQuestionByStatement(statement).getId())
                         .accept(MediaType.APPLICATION_JSON)
                         .with(AuthenticationStepDefs.authenticate()))
                 .andDo(print())
                 .andExpect(jsonPath("$.answer", is(answer)));
+
     }
 
     @And("It has not been created a question with statement {string}")
-    public void itHasNotBeenCreatedAQuestionWithStatement(String arg0) {
+    public void itHasNotBeenCreatedAQuestionWithStatement(String statement) throws Exception {
 
+
+        Question question=questionRepository.findQuestionByStatement(statement);
+        stepDefs.result = stepDefs.mockMvc.perform(
+                get("/questions/{id}",question == null ? 0: question.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
 
-    @And("Level {string} doesn't exist and topic {string} exist")
-    public void levelDoesnTExistAndTopicExist(String arg0, String arg1) {
 
-    }
 
     @And("question with statement {string} doesn't exist")
     public void questionWithStatementDoesnTExist(String statement) {
@@ -113,26 +139,32 @@ public class CreateQuestionStepDefs {
 
     @And("question with statement {string} exists")
     public void questionWithStatementExists(String statement) {
-       /* if (!questionRepository.existsQuestionByStatement(statement))
+        if (!questionRepository.existsQuestionByStatement(statement))
         {
             Question question = new Question();
             question.setStatement(statement);
             question.setAnswer("answer");
-            question.setLevelId();
-            question.setTopicId();
+            question.setLevelId(level);
+            question.setTopicId(topic);
             questionRepository.save(question);
-        }*/
-    }
-
-    @And("level {string} and topic {string} exist")
-    public void levelAndTopicExist(String levelName, String topicName) {
-        if (!levelRepository.existsLevelsByName(levelName) & !topicRepository.existsTopicByName(topicName)) {
-            Level level = new Level();
-            level.setName(levelName);
-            levelRepository.save(level);
-            Topic topic = new Topic();
-            topic.setName(topicName);
-            topicRepository.save(topic);
         }
     }
+
+
+    @And("level {string} is exist")
+    public void levelIsExist(String levelName) {
+        Assert.assertTrue("Question \""
+                        +  levelName + "\" exist",
+              levelRepository.existsLevelsByName(levelName));
+    }
+
+    @And("topic {string} is exist")
+    public void topicIsExist(String topicName) {
+        Assert.assertTrue("Question \""
+                        +  topicName + "\" exist",
+                topicRepository.existsTopicByName(topicName));
+    }
+
+
+
 }

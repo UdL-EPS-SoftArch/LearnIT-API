@@ -1,5 +1,6 @@
 package cat.udl.eps.softarch.learnphysics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
@@ -19,16 +20,23 @@ import java.util.Collection;
 public class Theory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Length(min = 1, max = 256)
+    @NotBlank
+    @Column(unique = true)
+    private String name;
+
 
     private String URL;
 
     private String text;
 
-    @NotBlank
-    private String topic;
+    @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
+    private Topic topic;
+    @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
+    private Level level;
 
-    @NotBlank
-    private Integer level;
 }
