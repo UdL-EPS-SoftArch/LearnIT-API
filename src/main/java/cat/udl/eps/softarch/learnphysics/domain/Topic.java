@@ -4,9 +4,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,19 +15,35 @@ import javax.validation.constraints.NotBlank;
 public class Topic extends UriEntity<Integer>{
 
     @Id
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer topicId;
 
     @NotBlank
+    @Column(unique = true)
     private String name;
 
     @Length(min = 1, max = 256)
     private String description;
 
-    @NotBlank
-    //@OneToMany
-    private String questions;
+    @OneToMany
+    private List<Question> questions;
 
-    @NotBlank
-    //@OneToMany
-    private String theory;
+    @OneToMany
+    private List<Theory> theory;
+
+    public Topic() {
+    }
+
+    public Topic(int topicId, String name, String description, List<Question> questions, List<Theory> theory) {
+        this.topicId = topicId;
+        this.name = name;
+        this.description = description;
+        this.questions = questions;
+        this.theory = theory;
+    }
+
+    @Override
+    public Integer getId() {
+        return topicId;
+    }
 }
