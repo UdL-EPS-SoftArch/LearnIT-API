@@ -1,5 +1,6 @@
 package cat.udl.eps.softarch.learnphysics.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Length;
@@ -14,10 +15,13 @@ import java.util.List;
 public class Level extends UriEntity<Integer> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer levelId;
 
     @NotBlank
     @Length(min = 1, max = 256)
+    @Column(unique = true)
     private String name;
 
     @Length(min = 1, max = 256)
@@ -28,7 +32,10 @@ public class Level extends UriEntity<Integer> {
     private List<Topic> topics;
 
     public Level(int levelId, String name, String description, List<Topic> topics) {
-        super();
+        this.levelId = levelId;
+        this.name = name;
+        this.description = description;
+        this.topics = topics;
     }
 
     @Override

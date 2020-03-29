@@ -8,11 +8,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 
-@RepositoryRestResource
+@RepositoryRestResource(collectionResourceRel = "topics", path = "topics")
 public interface TopicRepository extends PagingAndSortingRepository<Topic, Integer> {
     Optional<Topic> findById(@Param("topicId") Integer id);
-    Topic findByName(@Param("name") String name);
-    Topic findByDescription(@Param("description") String description);
-    Topic findByQuestions(@Param("questions") String questions);
-    Topic findByTheory(@Param("theory") String theory);
+    //Topic findByName(@Param("name") String name);
+    //Topic findByDescription(@Param("description") String description);
 }
