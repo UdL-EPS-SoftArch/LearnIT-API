@@ -21,8 +21,6 @@ import java.util.logging.Logger;
 @Component
 public class ApplicationContext implements InitializingBean {
 
-    private static final Logger LOG = Logger.getLogger(String.valueOf(ApplicationContext.class));
-
     List<Level> levels = new ArrayList<>();
 
     final LevelRepository levelRepository;
@@ -34,12 +32,10 @@ public class ApplicationContext implements InitializingBean {
         this.topicRepository = topicRepository;
     }
 
-    private List<Topic> makeTopics(Integer lvlNum) {
+    private List<Topic> makeTopics(Integer lvlNum, List<String> difficulties) {
         List<Topic> topics = new ArrayList<>();
         List<Question> questions = new ArrayList<>();
         List<Theory> theory = new ArrayList<>();
-        List<String> difficulties = Arrays.asList("Rookie", "Novice", "Advanced Novice", "Apprentice", "Advanced Apprentice",
-                "Adept", "Advanced Adept","Expert", "Master", "Legendary");
         topics.add(new Topic(1, "Computer Science Theory" + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Computer Science Theory", questions, theory));
         topics.add(new Topic(2, "IT " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
@@ -50,12 +46,22 @@ public class ApplicationContext implements InitializingBean {
                 + "level difficulty to Hardware", questions, theory));
         topics.add(new Topic(5, "Build API " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Build API", questions, theory));
+        topicRepository.save(topics.get(0));
+        topicRepository.save(topics.get(1));
+        topicRepository.save(topics.get(2));
+        topicRepository.save(topics.get(3));
+        topicRepository.save(topics.get(4));
         return topics;
     }
 
     private void makeLevel(Integer lvlNum) {
-        List<Topic> topics = makeTopics(lvlNum);
-        Level level = new Level(1, "Introduction", "This level", topics);
+        List<String> difficulties = Arrays.asList("Rookie", "Novice", "Advanced Novice", "Apprentice", "Advanced Apprentice",
+                "Adept", "Advanced Adept","Expert", "Master", "Legendary");
+        List<Topic> topics = makeTopics(lvlNum, difficulties);
+        Level level = new Level(lvlNum, difficulties.get(lvlNum-1),
+                "This level is of difficulty " + difficulties.get(lvlNum-1) + " and has topics: " + topics.get(0).getDescription() + ", " +
+                        topics.get(1).getDescription() + ", " + topics.get(2).getDescription() + ", "
+                                + topics.get(3).getDescription() +", and "+ topics.get(4).getDescription(), topics);
         levelRepository.save(level);
         levels.add(level);
     }
