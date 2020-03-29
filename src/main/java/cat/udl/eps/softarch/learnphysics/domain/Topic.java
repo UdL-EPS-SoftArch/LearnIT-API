@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class Topic extends UriEntity<Integer>{
 
     @Id
-    private Integer topicId;
+    private Integer id;
 
     @NotBlank
     private String name;
@@ -29,9 +29,4 @@ public class Topic extends UriEntity<Integer>{
     @NotBlank
     //@OneToMany
     private String theory;
-
-    @Override
-    public Integer getId() {
-        return topicId;
-    }
 }

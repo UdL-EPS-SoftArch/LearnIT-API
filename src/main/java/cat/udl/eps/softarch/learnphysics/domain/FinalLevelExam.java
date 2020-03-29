@@ -1,24 +1,16 @@
 package cat.udl.eps.softarch.learnphysics.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
+import java.util.List;
 
-public class FinalLevelExam {
-
-    @NotBlank
-    private Integer level;
+@Entity
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class FinalLevelExam extends Exam {
 
     @NotBlank
     private Float Mark;
@@ -26,4 +18,6 @@ public class FinalLevelExam {
     @NotBlank
     private String subject;
 
+    @OneToMany
+    private List<Level> level;
 }
