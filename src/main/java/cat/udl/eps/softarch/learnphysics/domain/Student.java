@@ -10,8 +10,7 @@ import javax.persistence.Entity;
 import java.util.Collection;
 
 @Entity
-@Data
-public class Student extends User{
+public class Student extends User {
     @Override
     @JsonValue(value = false)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

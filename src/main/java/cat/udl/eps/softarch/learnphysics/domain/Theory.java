@@ -22,11 +22,11 @@ public class Theory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @Length(min = 1, max = 256)
     @NotBlank
     @Column(unique = true)
     private String name;
-
 
     private String URL;
 
