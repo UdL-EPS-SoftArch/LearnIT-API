@@ -23,7 +23,6 @@ public class ApplicationContext implements InitializingBean {
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(ApplicationContext.class));
 
-    @Value("${levels}")
     List<Level> levels = new ArrayList<>();
 
     final LevelRepository levelRepository;
@@ -55,7 +54,6 @@ public class ApplicationContext implements InitializingBean {
     }
 
     private void makeLevel(Integer lvlNum) {
-        makeLevel(lvlNum);
         List<Topic> topics = makeTopics(lvlNum);
         Level level = new Level(1, "Introduction", "This level", topics);
         levelRepository.save(level);
@@ -74,6 +72,5 @@ public class ApplicationContext implements InitializingBean {
         if(!levelRepository.existsById(8)) makeLevel(8);
         if(!levelRepository.existsById(9)) makeLevel(9);
         if(!levelRepository.existsById(10)) makeLevel(10);
-        LOG.info((Supplier<String>) Arrays.asList(levelRepository.findById("levels")));
     }
 }
