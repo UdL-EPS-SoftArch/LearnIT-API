@@ -14,7 +14,7 @@ import java.util.List;
 public class Level extends UriEntity<Integer> {
 
     @Id
-    private Integer levelId;
+    private Integer id;
 
     @NotBlank
     @Length(min = 1, max = 256)
@@ -26,9 +26,4 @@ public class Level extends UriEntity<Integer> {
     @NotBlank
     @OneToMany
     private List<Topic> topics;
-
-    @Override
-    public Integer getId() {
-        return levelId;
-    }
 }

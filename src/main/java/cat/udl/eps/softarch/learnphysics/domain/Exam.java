@@ -1,22 +1,30 @@
 package cat.udl.eps.softarch.learnphysics.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
+import java.util.List;
 
-public class Exam {
+import org.hibernate.validator.constraints.Length;
+
+@Entity
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class Exam extends UriEntity<Integer> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @NotBlank
     private Integer nbOfQuestions;
 
+    @OneToMany
+    private List<Question> questions;
+
+    //@NotBlank
+    //@OneToMany
+    //private List<Question> Question;
 }
