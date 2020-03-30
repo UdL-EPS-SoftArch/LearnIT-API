@@ -30,6 +30,7 @@ public class CreateQuestionStepDefs {
 
     private   Level level;
     private   Topic topic;
+
     @Autowired
     private LevelRepository levelRepository;
     @Autowired
@@ -42,20 +43,28 @@ public class CreateQuestionStepDefs {
 
     @Given("There is a level")
     public void thereIsALevel() {
+        if (!levelRepository.existsLevelsByName("level"))
+        {
+            System.out.println("NEW LEVEL");
             level = new Level();
+            level.setLevelId(13);
             level.setName("level");
             level.setDescription("bla bla bla");
             levelRepository.save(level);
-
-
         }
+    }
+
     @And("There is a topic")
     public void thereIsATopic() {
+        if (!topicRepository.existsTopicByName("topic"))
+        {
             topic = new Topic();
+            topic.setTopicId(13);
             topic.setName("topic");
             topic.setDescription("bla bla bla");
             topic.setLevel(level);
             topicRepository.save(topic);
+        }
     }
 
 

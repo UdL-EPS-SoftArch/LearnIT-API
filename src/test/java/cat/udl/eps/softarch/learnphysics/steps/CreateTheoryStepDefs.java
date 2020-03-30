@@ -63,21 +63,28 @@ public class CreateTheoryStepDefs {
 
     @Given("There is a topic for theory")
     public void thereIsATopicForTheory() {
-        topic = new Topic();
-        topic.setName("topic");
-        topic.setDescription("bla bla bla");
-        topic.setLevel(level);
-        topicRepository.save(topic);
+        if (!topicRepository.existsTopicByName("topic"))
+        {
+            topic = new Topic();
+            topic.setTopicId(13);
+            topic.setName("topic");
+            topic.setDescription("bla bla bla");
+            topic.setLevel(level);
+            topicRepository.save(topic);
+        }
     }
 
     @And("Level")
     public void level() {
-        level = new Level();
-        level.setName("level");
-        level.setDescription("bla bla bla");
-        levelRepository.save(level);
-
-
+        if (!levelRepository.existsLevelsByName("level"))
+        {
+            System.out.println("NEW LEVEL");
+            level = new Level();
+            level.setLevelId(13);
+            level.setName("level");
+            level.setDescription("bla bla bla");
+            levelRepository.save(level);
+        }
     }
 
 
