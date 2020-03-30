@@ -55,14 +55,17 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
       userRepository.save(student);
     }
 
+
     if (!levelRepository.existsLevelsByName("levelname")) {
       level = new Level();
+      level.setLevelId(11);
       level.setName("levelname");
       level.setDescription("bla bla bla");
       levelRepository.save(level);
     }
     if (!topicRepository.existsTopicByName("topicname")) {
       Topic topic = new Topic();
+      topic.setTopicId(12);
       topic.setName("topicname");
       topic.setDescription("bla bla bla");
       topic.setLevel(level);
