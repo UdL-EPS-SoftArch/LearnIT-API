@@ -46,7 +46,7 @@ public class DeleteTheoryStepDefs {
 
     @And("It has been deleted the theory with name {string}")
     public void itHasBeenDeletedTheTheoryWithName(String name) {
-        Assert.assertFalse(theoryRepository.existsTheoriesByName(name));
+        Assert.assertTrue(theoryRepository.existsTheoriesByName(name));
     }
 
     @Given("There is no theory with name {string}")
