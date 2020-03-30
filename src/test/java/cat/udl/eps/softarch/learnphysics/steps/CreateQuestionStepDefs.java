@@ -69,14 +69,7 @@ public class CreateQuestionStepDefs {
 
 
 
-    @And("topic {string} is in level {string}")
-    public void topicIsInLevel(String topicName, String levelName) {
-        if(topic.getLevel()!=levelRepository.findLevelByName(levelName)) {
-            topic = topicRepository.findTopicByName(topicName);
-            topic.setLevel(levelRepository.findLevelByName(levelName));
-            topicRepository.save(topic);
-        }
-    }
+
 
     @When("I write a new question with statement {string} and answer {string}")
     public void iWriteANewQuestionWithStatementAnswerAndLevelAndTopic(String statement, String answer) throws Exception {
@@ -118,8 +111,6 @@ public class CreateQuestionStepDefs {
                 .andExpect(status().isOk());
     }
 
-
-
     @And("question with statement {string} doesn't exist")
     public void questionWithStatementDoesnTExist(String statement) {
         Assert.assertFalse("Question \""
@@ -127,22 +118,7 @@ public class CreateQuestionStepDefs {
                 questionRepository.existsQuestionByStatement(statement));
     }
 
-    @When("I write a new question with statement {string}, answer {string}")
-    public void iWriteANewQuestionWithStatementAnswer(String statement, String answer) throws Throwable {
-        Question question = new Question();
-        question.setStatement(statement);
-        question.setAnswer(answer);
 
-        stepDefs.result = stepDefs.mockMvc.perform(
-                post("/questions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(
-                                stepDefs.mapper.writeValueAsString(question)
-                        )
-                        .accept(MediaType.APPLICATION_JSON)
-                        .with(AuthenticationStepDefs.authenticate()))
-                .andDo(print());
-    }
 
 
 
@@ -160,19 +136,6 @@ public class CreateQuestionStepDefs {
     }
 
 
-    @And("level {string} is exist")
-    public void levelIsExist(String levelName) {
-        Assert.assertTrue("Question \""
-                        +  levelName + "\" exist",
-              levelRepository.existsLevelsByName(levelName));
-    }
-
-    @And("topic {string} is exist")
-    public void topicIsExist(String topicName) {
-        Assert.assertTrue("Question \""
-                        +  topicName + "\" exist",
-                topicRepository.existsTopicByName(topicName));
-    }
 
 
 
