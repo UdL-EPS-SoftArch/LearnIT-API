@@ -50,7 +50,7 @@ public class CreateQuestionStepDefs {
             level.setLevelId(13);
             level.setName("level");
             level.setDescription("bla bla bla");
-            levelRepository.save(level);
+            level = levelRepository.save(level);
         }
     }
 
@@ -59,11 +59,10 @@ public class CreateQuestionStepDefs {
         if (!topicRepository.existsTopicByName("topic"))
         {
             topic = new Topic();
-            topic.setTopicId(13);
             topic.setName("topic");
             topic.setDescription("bla bla bla");
             topic.setLevel(level);
-            topicRepository.save(topic);
+            topic = topicRepository.save(topic);
         }
     }
 
