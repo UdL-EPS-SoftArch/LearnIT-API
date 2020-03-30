@@ -55,7 +55,7 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
       userRepository.save(student);
     }
 
-
+    /*
     if (!levelRepository.existsLevelsByName("levelname")) {
       level = new Level();
       level.setLevelId(11);
@@ -70,7 +70,7 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
       topic.setDescription("bla bla bla");
       topic.setLevel(level);
       topicRepository.save(topic);
-    }
+    }*/
 
   }
 }

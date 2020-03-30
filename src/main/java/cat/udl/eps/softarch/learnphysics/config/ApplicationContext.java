@@ -1,22 +1,17 @@
 package cat.udl.eps.softarch.learnphysics.config;
 
+import cat.udl.eps.softarch.learnphysics.domain.Level;
 import cat.udl.eps.softarch.learnphysics.domain.Question;
 import cat.udl.eps.softarch.learnphysics.domain.Theory;
 import cat.udl.eps.softarch.learnphysics.domain.Topic;
-import cat.udl.eps.softarch.learnphysics.domain.Level;
 import cat.udl.eps.softarch.learnphysics.repository.LevelRepository;
 import cat.udl.eps.softarch.learnphysics.repository.TopicRepository;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.repository.query.QueryLookupStrategy;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.logging.Logger;
 
 @Component
 public class ApplicationContext implements InitializingBean {
@@ -61,7 +56,7 @@ public class ApplicationContext implements InitializingBean {
         Level level = new Level(lvlNum, difficulties.get(lvlNum-1),
                 "This level is of difficulty " + difficulties.get(lvlNum-1) + " and has topics: " + topics.get(0).getName() + ", " +
                         topics.get(1).getName() + ", " + topics.get(2).getName() + ", "
-                                + topics.get(3).getName() +", and "+ topics.get(4).getName(), topics);
+                        + topics.get(3).getName() +", and "+ topics.get(4).getName(), topics);
         levelRepository.save(level);
         levels.add(level);
     }
