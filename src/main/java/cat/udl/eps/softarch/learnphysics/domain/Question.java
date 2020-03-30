@@ -1,5 +1,6 @@
 package cat.udl.eps.softarch.learnphysics.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 
 @Entity
+@Data
 public class Question {
 
     @Id
@@ -29,9 +31,11 @@ public class Question {
     @NotBlank
     private String answer;
 
-    @NotBlank
-    private String topic;
+    @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
+    private Topic topicId;
+    @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
+    private Level levelId;
 
-    @NotBlank
-    private Integer level;
 }

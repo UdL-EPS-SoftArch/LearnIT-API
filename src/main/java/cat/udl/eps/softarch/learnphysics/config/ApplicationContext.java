@@ -1,22 +1,18 @@
 package cat.udl.eps.softarch.learnphysics.config;
 
+import cat.udl.eps.softarch.learnphysics.domain.Level;
 import cat.udl.eps.softarch.learnphysics.domain.Question;
 import cat.udl.eps.softarch.learnphysics.domain.Theory;
 import cat.udl.eps.softarch.learnphysics.domain.Topic;
-import cat.udl.eps.softarch.learnphysics.domain.Level;
 import cat.udl.eps.softarch.learnphysics.repository.LevelRepository;
 import cat.udl.eps.softarch.learnphysics.repository.TopicRepository;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.repository.query.QueryLookupStrategy;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Component
 public class ApplicationContext implements InitializingBean {
@@ -36,22 +32,17 @@ public class ApplicationContext implements InitializingBean {
         List<Topic> topics = new ArrayList<>();
         List<Question> questions = new ArrayList<>();
         List<Theory> theory = new ArrayList<>();
-        topics.add(new Topic(1, "Computer Science Theory" + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Computer Science Theory" + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Computer Science Theory", questions, theory));
-        topics.add(new Topic(2, "IT " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("IT " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to IT", questions, theory));
-        topics.add(new Topic(3, "Programming " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Programming " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Programming", questions, theory));
-        topics.add(new Topic(4, "Hardware " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Hardware " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Hardware", questions, theory));
-        topics.add(new Topic(5, "Build API " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Build API " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Build API", questions, theory));
-        topicRepository.save(topics.get(0));
-        topicRepository.save(topics.get(1));
-        topicRepository.save(topics.get(2));
-        topicRepository.save(topics.get(3));
-        topicRepository.save(topics.get(4));
-        return topics;
+        return topics.stream().map(topicRepository::save).collect(Collectors.toList());
     }
 
     private void makeLevel(Integer lvlNum) {
@@ -61,7 +52,7 @@ public class ApplicationContext implements InitializingBean {
         Level level = new Level(lvlNum, difficulties.get(lvlNum-1),
                 "This level is of difficulty " + difficulties.get(lvlNum-1) + " and has topics: " + topics.get(0).getName() + ", " +
                         topics.get(1).getName() + ", " + topics.get(2).getName() + ", "
-                                + topics.get(3).getName() +", and "+ topics.get(4).getName(), topics);
+                        + topics.get(3).getName() +", and "+ topics.get(4).getName(), topics);
         levelRepository.save(level);
         levels.add(level);
     }

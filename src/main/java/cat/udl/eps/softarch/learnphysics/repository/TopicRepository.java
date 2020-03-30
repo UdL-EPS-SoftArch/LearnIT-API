@@ -13,4 +13,6 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic, Integ
     Optional<Topic> findById(@Param("topicId") Integer id);
     //Topic findByName(@Param("name") String name);
     //Topic findByDescription(@Param("description") String description);
+    Topic findTopicByName(@Param("name") String name);
+    Boolean existsTopicByName(@Param("name") String name);
 }

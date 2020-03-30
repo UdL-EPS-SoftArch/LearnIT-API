@@ -1,6 +1,11 @@
 allowed-origins: http://localhost:4200
 default-password: password
 
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
 logging.level:
   org.hibernate: error
   org.springframework: error

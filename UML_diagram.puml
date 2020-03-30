@@ -68,9 +68,10 @@ Topic "*" -left- "1" Teacher: creates <
 Question "*" -left- "1" Teacher: creates <
 Theory "*" -left- "1" Teacher: creates <
 
-Question "*" -up- "*" Topic: composes >
+Question "*" -up- "1" Topic: composes >
 Theory "*" -up- "*" Topic: composes >
 Level "1" -up- "*" Topic: composes <
+Level "1" -up- "*" Question: has <
 
 Question "*" -- "*" Exam: composes >
 @enduml
