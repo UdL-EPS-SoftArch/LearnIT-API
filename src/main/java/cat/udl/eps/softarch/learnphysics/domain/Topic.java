@@ -38,8 +38,7 @@ public class Topic extends UriEntity<Integer>{
     public Topic() {
     }
 
-    public Topic(int topicId, String name, String description, List<Question> questions, List<Theory> theory) {
-        this.topicId = topicId;
+    public Topic(String name, String description, List<Question> questions, List<Theory> theory) {
         this.name = name;
         this.description = description;
         this.questions = questions;

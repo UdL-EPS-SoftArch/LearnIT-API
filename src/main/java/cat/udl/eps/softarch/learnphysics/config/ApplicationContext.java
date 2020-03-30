@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class ApplicationContext implements InitializingBean {
@@ -31,22 +32,17 @@ public class ApplicationContext implements InitializingBean {
         List<Topic> topics = new ArrayList<>();
         List<Question> questions = new ArrayList<>();
         List<Theory> theory = new ArrayList<>();
-        topics.add(new Topic(1, "Computer Science Theory" + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Computer Science Theory" + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Computer Science Theory", questions, theory));
-        topics.add(new Topic(2, "IT " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("IT " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to IT", questions, theory));
-        topics.add(new Topic(3, "Programming " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Programming " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Programming", questions, theory));
-        topics.add(new Topic(4, "Hardware " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Hardware " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Hardware", questions, theory));
-        topics.add(new Topic(5, "Build API " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
+        topics.add(new Topic("Build API " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Build API", questions, theory));
-        topicRepository.save(topics.get(0));
-        topicRepository.save(topics.get(1));
-        topicRepository.save(topics.get(2));
-        topicRepository.save(topics.get(3));
-        topicRepository.save(topics.get(4));
-        return topics;
+        return topics.stream().map(topicRepository::save).collect(Collectors.toList());
     }
 
     private void makeLevel(Integer lvlNum) {
