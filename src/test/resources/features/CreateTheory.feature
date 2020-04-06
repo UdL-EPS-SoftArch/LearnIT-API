@@ -3,8 +3,7 @@ Feature: Create a theory
   As a teacher
   I want to add a new theory
   Background:
-    Given There is a topic for theory
-    And Level
+    Given There is a level with a topic
 
 
   Scenario: Add a new theory as teacher

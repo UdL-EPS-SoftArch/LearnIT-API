@@ -26,17 +26,16 @@ public class Level extends UriEntity<Integer> {
     @Length(min = 1, max = 256)
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "level")
     private List<Topic> topics;
 
     public Level() {
     }
 
-    public Level(int levelId, String name, String description, List<Topic> topics) {
+    public Level(int levelId, String name, String description) {
         this.levelId = levelId;
         this.name = name;
         this.description = description;
-        this.topics = topics;
     }
 
     @Override
