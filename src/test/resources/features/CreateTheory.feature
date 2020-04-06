@@ -2,6 +2,9 @@ Feature: Create a theory
   In order to use the app
   As a teacher
   I want to add a new theory
+  Background:
+    Given There is a topic for theory
+    And Level
 
 
   Scenario: Add a new theory as teacher

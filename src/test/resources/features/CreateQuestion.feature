@@ -2,6 +2,9 @@ Feature: Create a question
   In order to use the app
   As a teacher
   I want to add a new question
+  Background:
+    Given There is a level
+    And There is a topic
 
 
   Scenario: Add a new question as teacher
