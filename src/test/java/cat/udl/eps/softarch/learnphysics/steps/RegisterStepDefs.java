@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import cat.udl.eps.softarch.learnphysics.domain.Student;
 import cat.udl.eps.softarch.learnphysics.domain.User;
+import cat.udl.eps.softarch.learnphysics.repository.TopicRepository;
 import cat.udl.eps.softarch.learnphysics.repository.UserRepository;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -25,6 +26,9 @@ public class RegisterStepDefs {
 
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private TopicRepository topicRepository;
 
   @Given("^There is no registered user with username \"([^\"]*)\"$")
   public void thereIsNoRegisteredUserWithUsername(String user) {

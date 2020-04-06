@@ -3,8 +3,7 @@ Feature: Create a question
   As a teacher
   I want to add a new question
   Background:
-    Given There is a level
-    And There is a topic
+    Given There is a level with a topic
 
 
   Scenario: Add a new question as teacher

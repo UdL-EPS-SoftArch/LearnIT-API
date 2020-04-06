@@ -13,10 +13,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.ht.Le;
 import org.json.JSONObject;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -41,29 +43,11 @@ public class CreateQuestionStepDefs {
     private StepDefs stepDefs;
 
 
-    @Given("There is a level")
+    @Given("There is a level with a topic")
+    @Transactional
     public void thereIsALevel() {
-        if (!levelRepository.existsLevelsByName("level"))
-        {
-            System.out.println("NEW LEVEL");
-            level = new Level();
-            level.setLevelId(13);
-            level.setName("level");
-            level.setDescription("bla bla bla");
-            level = levelRepository.save(level);
-        }
-    }
-
-    @And("There is a topic")
-    public void thereIsATopic() {
-        if (!topicRepository.existsTopicByName("topic"))
-        {
-            topic = new Topic();
-            topic.setName("topic");
-            topic.setDescription("bla bla bla");
-            topic.setLevel(level);
-            topic = topicRepository.save(topic);
-        }
+        level = levelRepository.findLevelByName("Rookie");
+        topic = topicRepository.findByLevel(level).get(0);
     }
 
 
