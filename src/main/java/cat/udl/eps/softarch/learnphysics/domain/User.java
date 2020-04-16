@@ -50,6 +50,10 @@ public abstract class User extends UriEntity<String> implements UserDetails {
 	@Override
 	public String getId() { return username; }
 
+	public void setId(String username) {
+		this.username = username;
+	}
+
 
 
 	@Override
