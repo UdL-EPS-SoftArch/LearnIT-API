@@ -28,7 +28,7 @@ public class Theory {
     @Column(unique = true)
     private String name;
 
-    private String URL;
+    private String contentLink;
 
     private String text;
 
