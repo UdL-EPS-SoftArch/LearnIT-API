@@ -1,4 +1,4 @@
-allowed-origins: https://learnphysics.herokuapp.com
+allowed-origins: https://learnit-client.herokuapp.com
 
 logging:
     level:

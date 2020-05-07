@@ -27,12 +27,22 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
                     .and()
                     .authorizeRequests()
                     .antMatchers(HttpMethod.GET, "/identity").authenticated()
-                    .antMatchers(HttpMethod.POST, "/users").anonymous()
-                    .antMatchers(HttpMethod.POST, "/users/*").denyAll()
+                    .antMatchers(HttpMethod.POST, "/students").anonymous()
+                    .antMatchers(HttpMethod.POST, " *").denyAll()
+
+                    .antMatchers(HttpMethod.POST, "/questions").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.DELETE, "/questions/*").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.PATCH, "/questions/*").hasRole("TEACHER")
+
+                    .antMatchers(HttpMethod.POST, "/theories").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.DELETE, "/theories/*").hasRole("TEACHER")
+                    .antMatchers(HttpMethod.PATCH, "/theories/*").hasRole("TEACHER")
+
                     .antMatchers(HttpMethod.POST, "/**/*").authenticated()
                     .antMatchers(HttpMethod.PUT, "/**/*").authenticated()
                     .antMatchers(HttpMethod.PATCH, "/**/*").authenticated()
                     .antMatchers(HttpMethod.DELETE, "/**/*").authenticated()
+
                     .anyRequest().permitAll()
                     .and()
                     .httpBasic().realmName("demo")

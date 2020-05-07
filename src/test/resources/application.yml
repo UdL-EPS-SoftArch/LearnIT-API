@@ -1,0 +1,7 @@
+allowed-origins: http://localhost:4200
+default-password: password
+
+
+logging.level:
+  org.hibernate: error
+  org.springframework: error

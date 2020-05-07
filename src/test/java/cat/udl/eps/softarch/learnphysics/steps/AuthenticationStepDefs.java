@@ -34,7 +34,4 @@ public class AuthenticationStepDefs {
         currentUsername = currentPassword = null;
     }
 
-    @Given("I login as {string} with password {string} and role {string}")
-    public void iLoginAsWithPasswordAndRole(String arg0, String arg1, String arg2) {
-    }
 }
