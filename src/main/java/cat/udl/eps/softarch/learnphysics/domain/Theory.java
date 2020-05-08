@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -29,7 +30,9 @@ public class Theory {
     private String name;
 
     private String contentLink;
-
+    @Lob
+    @Type(type="text")
+    @Column(length = 2000 * 1025)
     private String text;
 
     @ManyToOne
