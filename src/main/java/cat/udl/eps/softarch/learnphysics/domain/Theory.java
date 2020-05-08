@@ -29,7 +29,8 @@ public class Theory {
     private String name;
 
     private String contentLink;
-
+    @Lob
+    @Column(length = 100 * 1024)
     private String text;
 
     @ManyToOne
