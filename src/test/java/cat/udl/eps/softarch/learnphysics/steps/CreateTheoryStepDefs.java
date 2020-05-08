@@ -46,7 +46,7 @@ public class CreateTheoryStepDefs {
     public void iWriteANewTheoryWithNameUrlAndText(String name, String url, String text) throws Exception {
         Theory theory = new Theory();
         theory.setName(name);
-        theory.setURL(url);
+        theory.setContentLink(url);
         theory.setText(text);
         theory.setTopic(topic);
 
@@ -71,7 +71,7 @@ public class CreateTheoryStepDefs {
                         .accept(MediaType.APPLICATION_JSON)
                         .with(AuthenticationStepDefs.authenticate()))
                 .andDo(print())
-                .andExpect(jsonPath("$.url", is(url)))
+                .andExpect(jsonPath("$.contentLink", is(url)))
                 .andExpect(jsonPath("$.text", is(text)));
     }
 
@@ -81,7 +81,7 @@ public class CreateTheoryStepDefs {
         {
             Theory theory = new Theory();
             theory.setName(name);
-            theory.setURL("youtube.com");
+            theory.setContentLink("youtube.com");
             theory.setText("text");
             theory.setLevel(level);
             theory.setTopic(topic);
@@ -105,7 +105,7 @@ public class CreateTheoryStepDefs {
         {
             Theory theory = new Theory();
             theory.setName(name);
-            theory.setURL("youtube.com");
+            theory.setContentLink("youtube.com");
             theory.setText("text");
             theory.setLevel(level);
             theory.setTopic(topic);

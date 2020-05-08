@@ -20,6 +20,7 @@ import java.util.Collection;
 public class Theory {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Length(min = 1, max = 256)
@@ -27,7 +28,7 @@ public class Theory {
     @Column(unique = true)
     private String name;
 
-    private String URL;
+    private String contentLink;
 
     private String text;
 
