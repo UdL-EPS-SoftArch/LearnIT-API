@@ -30,6 +30,7 @@ public class Theory {
     private String name;
 
     private String contentLink;
+
     @Lob
     @Type(type="text")
     @Column(length = 2000 * 1025)
@@ -38,6 +39,7 @@ public class Theory {
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     private Topic topic;
+
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     private Level level;

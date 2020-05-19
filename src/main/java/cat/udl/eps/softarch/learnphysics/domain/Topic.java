@@ -28,7 +28,7 @@ public class Topic extends UriEntity<Integer>{
     @ManyToOne
     private Level level;
 
-    @OneToMany
+    @OneToMany(mappedBy = "topic")
     private List<Question> questions;
 
     @OneToMany

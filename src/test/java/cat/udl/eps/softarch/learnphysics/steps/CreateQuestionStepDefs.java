@@ -59,8 +59,9 @@ public class CreateQuestionStepDefs {
         Question question = new Question();
         question.setStatement(statement);
         question.setAnswer(answer);
-        question.setLevelId(level);
-        question.setTopicId(topic);
+        //question.setLevelId(level);
+        //question.setTopicId(topic);
+        question.setTopic(topic);
         stepDefs.result = stepDefs.mockMvc.perform(
                 post("/questions")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -112,8 +113,9 @@ public class CreateQuestionStepDefs {
             Question question = new Question();
             question.setStatement(statement);
             question.setAnswer("answer");
-            question.setLevelId(level);
-            question.setTopicId(topic);
+            //question.setLevelId(level);
+            //question.setTopicId(topic);
+            question.setTopic(topic);
             questionRepository.save(question);
         }
     }
