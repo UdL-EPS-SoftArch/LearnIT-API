@@ -67,6 +67,7 @@ public class ApplicationContext implements InitializingBean {
         topic_name = "Computer Science Theory" + lvlNum;
         questions = makeQuestions(lvlNum, topic_name);
         topic = new Topic(topic_name, "This topic is " + difficulties.get(lvlNum-1) + "level difficulty to Computer Science Theory", questions, theory);
+        topic = topicRepository.save(topic);
         topics.add(topic);
 
         for (Question q: questions) {
@@ -77,6 +78,7 @@ public class ApplicationContext implements InitializingBean {
         topic_name = "IT " + lvlNum;
         questions = makeQuestions(lvlNum, topic_name);
         topic = new Topic(topic_name, "This topic is " + difficulties.get(lvlNum-1) + "level difficulty to IT", questions, theory);
+        topic = topicRepository.save(topic);
         topics.add(topic);
 
         for (Question q: questions) {
@@ -87,6 +89,7 @@ public class ApplicationContext implements InitializingBean {
         topic_name = "Programming " + lvlNum;
         questions = makeQuestions(lvlNum, topic_name);
         topic = new Topic(topic_name, "This topic is " + difficulties.get(lvlNum-1) + "level difficulty to Programming", questions, theory);
+        topic = topicRepository.save(topic);
         topics.add(topic);
 
         for (Question q: questions) {
@@ -97,6 +100,7 @@ public class ApplicationContext implements InitializingBean {
         topic_name = "Hardware " + lvlNum;
         questions = makeQuestions(lvlNum, topic_name);
         topic = new Topic(topic_name, "This topic is " + difficulties.get(lvlNum-1) + "level difficulty to Hardware", questions, theory);
+        topic = topicRepository.save(topic);
         topics.add(topic);
 
         for (Question q: questions) {
@@ -107,6 +111,7 @@ public class ApplicationContext implements InitializingBean {
         topic_name = "Build API " + lvlNum;
         questions = makeQuestions(lvlNum, topic_name);
         topic = new Topic(topic_name, "This topic is " + difficulties.get(lvlNum-1) + "level difficulty to Build API", questions, theory);
+        topic = topicRepository.save(topic);
         topics.add(topic);
 
         for (Question q: questions) {
