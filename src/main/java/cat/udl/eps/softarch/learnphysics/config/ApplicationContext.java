@@ -44,6 +44,7 @@ public class ApplicationContext implements InitializingBean {
                 + "level difficulty to Hardware", questions, theory));
         topics.add(new Topic("Build API " + lvlNum, "This topic is " + difficulties.get(lvlNum-1)
                 + "level difficulty to Build API", questions, theory));
+
         topicRepository.saveAll(topics);
         return topics;
     }
