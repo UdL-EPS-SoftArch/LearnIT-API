@@ -12,48 +12,48 @@ import org.springframework.security.config.annotation.authentication.configurati
 @Configuration
 public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter {
 
-  @Value("${default-password}")
-  String defaultPassword;
+    @Value("${default-password}")
+    String defaultPassword;
 
-  final BasicUserDetailsService basicUserDetailsService;
-  final UserRepository userRepository;
-  final LevelRepository levelRepository;
-  final TopicRepository topicRepository;
+    final BasicUserDetailsService basicUserDetailsService;
+    final UserRepository userRepository;
+    final LevelRepository levelRepository;
+    final TopicRepository topicRepository;
 
 
-  public AuthenticationConfig(BasicUserDetailsService basicUserDetailsService, UserRepository userRepository, LevelRepository levelRepository,TopicRepository topicRepository) {
-    this.basicUserDetailsService = basicUserDetailsService;
-    this.userRepository = userRepository;
-    this.levelRepository=levelRepository;
-    this.topicRepository=topicRepository;
-  }
-
-  @Override
-  public void init(AuthenticationManagerBuilder auth) throws Exception {
-    auth
-        .userDetailsService(basicUserDetailsService)
-        .passwordEncoder(User.passwordEncoder);
-
-      // Sample user
-    Level level = null;
-
-      if (!userRepository.existsById("teacher")) {
-        User teacher = new Teacher();
-        teacher.setEmail("teacher@sample.app");
-        teacher.setUsername("teacher");
-        teacher.setPassword("teacherpassword");
-        teacher.encodePassword();
-        userRepository.save(teacher);
+    public AuthenticationConfig(BasicUserDetailsService basicUserDetailsService, UserRepository userRepository, LevelRepository levelRepository,TopicRepository topicRepository) {
+        this.basicUserDetailsService = basicUserDetailsService;
+        this.userRepository = userRepository;
+        this.levelRepository=levelRepository;
+        this.topicRepository=topicRepository;
     }
 
-      if (!userRepository.existsById("student")) {
-      User student = new Student();
-      student.setEmail("student@sample.app");
-      student.setUsername("student");
-      student.setPassword("studentpassword");
-      student.encodePassword();
-      userRepository.save(student);
-    }
+    @Override
+    public void init(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(basicUserDetailsService)
+                .passwordEncoder(User.passwordEncoder);
+
+        // Sample user
+        Level level = null;
+
+        if (!userRepository.existsById("teacher")) {
+            User teacher = new Teacher();
+            teacher.setEmail("teacher@sample.app");
+            teacher.setUsername("teacher");
+            teacher.setPassword("teacherpassword");
+            teacher.encodePassword();
+            userRepository.save(teacher);
+        }
+
+        if (!userRepository.existsById("student")) {
+            User student = new Student();
+            student.setEmail("student@sample.app");
+            student.setUsername("student");
+            student.setPassword("studentpassword");
+            student.encodePassword();
+            userRepository.save(student);
+        }
 
     /*
     if (!levelRepository.existsLevelsByName("levelname")) {
@@ -72,5 +72,5 @@ public class AuthenticationConfig extends GlobalAuthenticationConfigurerAdapter 
       topicRepository.save(topic);
     }*/
 
-  }
+    }
 }

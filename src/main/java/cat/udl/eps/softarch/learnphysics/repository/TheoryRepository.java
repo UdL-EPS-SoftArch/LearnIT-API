@@ -8,11 +8,15 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 @RepositoryRestResource
 public interface TheoryRepository extends PagingAndSortingRepository<Theory, Integer> {
 
     Boolean existsTheoriesByName(@Param("name") String name);
     Theory findTheoriesByName(@Param("name") String name);
 
-    Theory findByLevelAndTopic(@Param("level") Level level, @Param("topic") Topic topic);
+    List<Theory> findByLevelAndTopic(Level level, Topic topic);
+    List<Theory> findByLevel(Level level);
+    List<Theory> findByTopic(Topic topic);
 }

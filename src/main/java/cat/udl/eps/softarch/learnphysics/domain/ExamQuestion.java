@@ -17,15 +17,12 @@ public class ExamQuestion extends UriEntity<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Nullable
     private Integer id;
 
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
 
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @ManyToOne
     @JoinColumn(name = "exam_id")
     private Exam exam;

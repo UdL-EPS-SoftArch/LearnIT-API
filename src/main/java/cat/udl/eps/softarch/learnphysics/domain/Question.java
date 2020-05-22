@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,7 @@ public class Question extends UriEntity<Integer> {
     //public class Question {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank
@@ -47,4 +48,8 @@ public class Question extends UriEntity<Integer> {
         this.answer = answer;
     }
 
+    @Override
+    public Integer getId() {
+        return id;
+    }
 }

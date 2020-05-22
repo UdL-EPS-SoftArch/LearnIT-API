@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,11 +19,13 @@ import java.util.Collection;
 
 @Entity
 @Data
-public class Theory {
+@EqualsAndHashCode(callSuper = true)
+public class Theory extends UriEntity<Integer> {
+    //public class Theory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @Length(min = 1, max = 256)
     @NotBlank
@@ -44,4 +47,8 @@ public class Theory {
     @JsonIdentityReference(alwaysAsId = true)
     private Level level;
 
+    @Override
+    public Integer getId() {
+        return id;
+    }
 }

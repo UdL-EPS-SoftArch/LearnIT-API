@@ -11,4 +11,5 @@ public interface ExamQuestionRepository extends PagingAndSortingRepository<ExamQ
 
     List<ExamQuestion> findByExam(Exam exam);
     List<ExamQuestion> findByQuestion(Question question);
+    List<ExamQuestion> findByExamAndQuestion(Exam exam, Question question);
 }
