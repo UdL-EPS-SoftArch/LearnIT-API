@@ -17,5 +17,7 @@ public interface TopicRepository extends PagingAndSortingRepository<Topic, Integ
     //Topic findByDescription(@Param("description") String description);
     Topic findTopicByName(@Param("name") String name);
     Boolean existsTopicByName(@Param("name") String name);
+
     List<Topic> findByLevel(Level level);
+    //List<Topic> findByLevel(@Param("level_id") Level level);
 }

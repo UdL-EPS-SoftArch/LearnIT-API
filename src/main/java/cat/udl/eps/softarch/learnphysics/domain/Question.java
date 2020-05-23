@@ -1,27 +1,24 @@
 package cat.udl.eps.softarch.learnphysics.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
-public class Question {
+@EqualsAndHashCode(callSuper = true)
+public class Question extends UriEntity<Integer> {
+    //public class Question {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank
@@ -33,9 +30,26 @@ public class Question {
 
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
-    private Topic topicId;
-    @ManyToOne
-    @JsonIdentityReference(alwaysAsId = true)
-    private Level levelId;
+    private Topic topic;
 
+    //@ManyToOne
+    //@JsonIdentityReference(alwaysAsId = true)
+    //private Level levelId;
+
+    @OneToMany(mappedBy="question")
+    private List<ExamQuestion> exams_questions;
+
+
+    public Question() {
+    }
+
+    public Question(String statement, String answer) {
+        this.statement = statement;
+        this.answer = answer;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
 }
